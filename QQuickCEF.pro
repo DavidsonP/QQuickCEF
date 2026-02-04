@@ -1,4 +1,5 @@
 QT += quick
+CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -6,7 +7,10 @@ QT += quick
 
 SOURCES += \
         Sources/CefQuickItem.cpp \
-        Sources/main.cpp
+        Sources/main.cpp \
+        Sources/osr_renderer.cpp \
+        Sources/osr_renderer_settings.cpp \
+        Sources/osr_window_win.cpp
 
 RESOURCES += qml.qrc
 
@@ -22,4 +26,19 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    Sources/CefQuickItem.h
+    Sources/CefQuickItem.h \
+    Sources/osr_renderer.h \
+    Sources/osr_renderer_settings.h \
+    Sources/osr_window_win.h \
+    Sources/osrrenderhandlerwin.h
+
+INCLUDEPATH += \
+    CEF + \
+    CEF/include
+
+LIBS += \
+    $$PWD/CEF/libcef_dll_wrapper.lib
+
+LIBS += \
+    $$PWD/CEF/libcef.lib
+
