@@ -6,11 +6,11 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        Sources/CefQuickItem.cpp \
-        Sources/main.cpp \
-        Sources/osr_renderer.cpp \
-        Sources/osr_renderer_settings.cpp \
-        Sources/osr_window_win.cpp
+        Sources/CefAppHandler.cpp \
+        Sources/CefClientHandler.cpp \
+        Sources/CefWebView.cpp \
+        Sources/QtBridgeV8Handler.cpp \
+        Sources/main.cpp
 
 RESOURCES += qml.qrc
 
@@ -26,11 +26,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    Sources/CefQuickItem.h \
-    Sources/osr_renderer.h \
-    Sources/osr_renderer_settings.h \
-    Sources/osr_window_win.h \
-    Sources/osrrenderhandlerwin.h
+    Sources/CefAppHandler.h \
+    Sources/CefClientHandler.h \
+    Sources/CefWebView.h \
+    Sources/QtBridgeV8Handler.h
 
 INCLUDEPATH += \
     CEF + \
@@ -42,3 +41,4 @@ LIBS += \
 LIBS += \
     $$PWD/CEF/libcef.lib
 
+LIBS += -luser32
